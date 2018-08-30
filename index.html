@@ -8,53 +8,13 @@
 </head>
 
 <body>
-    <h1>Hello from ag-grid!</h1>
+
 
     <div id="myGrid" style="height: 600px;width:500px;" class="ag-theme-balham"></div>
 
-    <script type="text/javascript" charset="utf-8">
-        // specify the columns
-        var columnDefs = [
-            { headerName: "Make", field: "make" },
-        ];
-
-        console.log(111);
-
-        // specify the data
-        var rowData = [
-            { make: "Toyota" },
-            { make: "Ford" },
-            { make: "Porsche" }
-        ];
-
-        // let the grid know which columns and what data to use
-        var gridOptions = {
-            columnDefs: columnDefs,
-            rowData: rowData,
-            columnTypes: {
-                "nonEditableColumn": { editable: false },
-                "dateColumn": { suppressMenu: true, suppressSorting: false }
-            },
+    <script src="script.js"></script>
 
 
-            enableFilter: false,
-            enableSorting: false,
-
-            // these hide enterprise features, so they are not confusing
-            // you if using ag-Grid standard
-            suppressContextMenu: false,
-            suppressMenuMainPanel: false,
-            suppressMenuColumnPanel: false,
-            floatingFilter: true
-        };
-
-        // lookup the container we want the Grid to use
-        var eGridDiv = document.querySelector('#myGrid');
-
-        // create the grid passing in the div to use together with the columns & data we want to use
-        new agGrid.Grid(eGridDiv, gridOptions);
-
-    </script>
 </body>
 
 </html>
