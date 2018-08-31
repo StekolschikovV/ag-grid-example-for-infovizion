@@ -1,56 +1,49 @@
-
 var columnDefs = [
     {
-        headerName: "Gold", 
-        field: "gold",
-        filter: 'agTextColumnFilter', 
-        suppressMenu: true,
-        // suppressColumnVirtualisation: true,
-        // suppressResize: true,
-        // suppressSizeToFit: true,
-        floatingFilterComponent: 'customNumberFloatingFilter',
+        headerName: "Athlete", 
+        field: "athlete", 
+        width: 150, 
+        "checkboxSelection": true, 
+        headerCheckboxSelection: true, 
+        headerCheckboxSelectionFilteredOnly:true,
         floatingFilterComponentParams: {
             suppressFilterButton: true,
             // color: 'red'
             // isFullWidthCell: true,
-            
+        
         },
-        width: "500",
-        onGridReady: function (params) {
-            params.api.sizeColumnsToFit();
-        },
-        headerClass: 'my-css-class',
-
-
-        // isFullWidthCell: true,  
-        // isFullWidthCell: 1,  
     },
 ];
 
+function RowSelected(event){
+    if(event.node.isSelected()){
+      console.log("deselected");
+      event.node.setSelected(false, false);
+    } else {
+      event.node.setSelected(true);
+      console.log("selected, add");
+    }
+    
+}
+
 var gridOptions = {
+    columnDefs: columnDefs,
+    onRowClicked: RowSelected,
+    suppressRowClickSelection: true,
+    enableRangeSelection: true,
+    enableCellChangeFlash: true,
+    rowSelection: 'multiple',
+    rowData: null,
+    headerHeight: 0,
     components: {
         // headerHeight: 1500,
         customNumberFloatingFilter: getNumberFloatingFilterComponent()
     },
     floatingFilter: true,
-    columnDefs: columnDefs,
-    // enableColResize: true,   
-    rowData: null,
-    headerHeight: 0,
-    // enableFilter: true,
-    // suppressColumnVirtualisation: true,
-    // colSpan: 51
-    // isFullWidthCell: true,
-    // headerCellRenderer: (params) =>{return '<h1 column="headerColDef">' + 111 + '</h1>'}
-    // isFullWidthCell: function(rowNode) {
-    //     // in this example, we check the fullWidth attribute that we set
-    //     // while creating the data. what check you do to decide if you
-    //     // want a row full width is up to you, as long as you return a boolean
-    //     // for this method.
-    //     return rowNode.data.fullWidth;
-    // },
+    onGridReady: function (params) {
+        params.api.sizeColumnsToFit();
+    },
 };
-
 function getNumberFloatingFilterComponent() {
     function NumberFloatingFilter() {
     }
@@ -101,20 +94,25 @@ function getNumberFloatingFilterComponent() {
 
     return NumberFloatingFilter;
 }
-
-
+function selectAllAmerican() {
+    gridOptions.api.forEachNode( function (node) {
+        if (node.data.country === 'United States') {
+            node.setSelected(true);
+        }
+    });
+}
 
 // setup the grid after the page has finished loading
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     var gridDiv = document.querySelector('#myGrid');
     new agGrid.Grid(gridDiv, gridOptions);
 
     // do http request to get our sample data - not using any framework to keep the example self contained.
     // you will probably use a framework like JQuery, Angular or something else to do your HTTP calls.
     var httpRequest = new XMLHttpRequest();
-    httpRequest.open('GET', 'https://raw.githubusercontent.com/ag-grid/ag-grid-docs/master/src/olympicWinnersSmall.json');
+    httpRequest.open('GET', './data.json');
     httpRequest.send();
-    httpRequest.onreadystatechange = function () {
+    httpRequest.onreadystatechange = function() {
         if (httpRequest.readyState == 4 && httpRequest.status == 200) {
             var httpResult = JSON.parse(httpRequest.responseText);
             gridOptions.api.setRowData(httpResult);

@@ -1,5 +1,14 @@
-* {
-  padding: 50px;
-  background: green;
+.container {
+  background: grey;
+  max-width: 600px;
+}
+
+.ag-cell-value {
+  background: white;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1px;
+  padding: 5px;
+  font-size: .9em;
+  color: #595959;
 }
 /*# sourceMappingURL=index.css.map */
