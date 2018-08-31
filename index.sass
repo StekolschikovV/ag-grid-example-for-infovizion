@@ -1,15 +1,16 @@
 .container
     background: grey
     max-width: 600px
-
-.ag-cell-value
-    background: white
-    // border-top: 1px solid #ddd
-    border-bottom: 1px solid #ddd
-    margin-bottom: 1px
-    padding: 5px
-    font-size: .9em
-    color: #595959
-
-
-
+    .ag-floating-filter-full-body 
+        input
+            // background: red
+            width: calc(100% - 4px)
+    .ag-body-viewport
+        overflow-x: hidden
+        .ag-cell
+            // background: red
+            border-bottom: 1px solid #ddd
+            padding: 5px 15px 5px 5px
+            background: white
+            .ag-selection-checkbox
+                float: right

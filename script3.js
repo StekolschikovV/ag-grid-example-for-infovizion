@@ -53,7 +53,7 @@ function getNumberFloatingFilterComponent() {
         // this.isFullWidthCell = true;
         this.onFloatingFilterChanged = params.onFloatingFilterChanged;
         this.eGui = document.createElement('div');
-        this.eGui.innerHTML = '<input style="width:100%" type="text"/>'
+        this.eGui.innerHTML = '<input type="text"/>'
         this.currentValue = null;
         this.eFilterInput = this.eGui.querySelector('input');
         this.eFilterInput.style.color = 'red';

@@ -3,12 +3,21 @@
   max-width: 600px;
 }
 
-.ag-cell-value {
-  background: white;
+.container .ag-floating-filter-full-body input {
+  width: calc(100% - 4px);
+}
+
+.container .ag-body-viewport {
+  overflow-x: hidden;
+}
+
+.container .ag-body-viewport .ag-cell {
   border-bottom: 1px solid #ddd;
-  margin-bottom: 1px;
-  padding: 5px;
-  font-size: .9em;
-  color: #595959;
+  padding: 5px 15px 5px 5px;
+  background: white;
+}
+
+.container .ag-body-viewport .ag-cell .ag-selection-checkbox {
+  float: right;
 }
 /*# sourceMappingURL=index.css.map */
